@@ -3,6 +3,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import Link from 'next/link'
 
 export default function Login() {
   const { data: session, status } = useSession()
@@ -75,6 +76,22 @@ export default function Login() {
               </p>
             </div>
           </div>
+          
+          <Link href="/atenea">
+          <button
+            onClick={() => signOut()}
+            className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 
+                      hover:to-yellow-700 
+                      text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 
+                      transform hover:scale-105 hover:shadow-lg active:scale-95
+                      focus:outline-none focus:ring-4 focus:ring-red-300/50"
+          >
+            <span className="flex items-center justify-center space-x-2">
+              <span>🧠</span>
+              <span>AteneaDigitalMVP</span>
+            </span>
+          </button>
+          </Link>
 
           <button
             onClick={() => signOut()}
