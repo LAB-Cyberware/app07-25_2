@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+'use client'
+
+import { useState, useEffect } from 'react';
 import { Send, Copy, Sparkles, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X } from 'lucide-react';
 
 // --- Mock Data ---
