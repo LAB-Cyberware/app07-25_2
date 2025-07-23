@@ -77,33 +77,36 @@ export default function Login() {
             </div>
           </div>
           
-          <Link href="/atenea">
-          <button
-            className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 
-                      hover:to-green-700 
-                      text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 
-                      transform hover:scale-105 hover:shadow-lg active:scale-95
-                      focus:outline-none focus:ring-4 focus:ring-red-300/50"
-          >
-            <span className="flex items-center justify-center space-x-2">
-              <span>🧠</span>
-              <span>AteneaDigitalMVP</span>
-            </span>
-          </button>
-          </Link>
+          {/* Contenedor flex para los botones en la misma fila */}
+          <div className="flex gap-3">
+            <Link href="/atenea" className="flex-1">
+              <button
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 
+                          hover:to-green-700 
+                          text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 
+                          transform hover:scale-105 hover:shadow-lg active:scale-95
+                          focus:outline-none focus:ring-4 focus:ring-green-300/50"
+              >
+                <span className="flex items-center justify-center space-x-2">
+                  <span>🧠</span>
+                  <span className="text-sm">AteneaDigitalMVP</span>
+                </span>
+              </button>
+            </Link>
 
-          <button
-            onClick={() => signOut()}
-            className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 
-                     text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 
-                     transform hover:scale-105 hover:shadow-lg active:scale-95
-                     focus:outline-none focus:ring-4 focus:ring-red-300/50"
-          >
-            <span className="flex items-center justify-center space-x-2">
-              <span>🚪</span>
-              <span>Cerrar sesión</span>
-            </span>
-          </button>
+            <button
+              onClick={() => signOut()}
+              className="flex-1 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 
+                       text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 
+                       transform hover:scale-105 hover:shadow-lg active:scale-95
+                       focus:outline-none focus:ring-4 focus:ring-red-300/50"
+            >
+              <span className="flex items-center justify-center space-x-2">
+                <span>🚪</span>
+                <span className="text-sm">Cerrar sesión</span>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     )
