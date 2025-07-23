@@ -79,7 +79,7 @@ export default function Login() {
           
           {/* Contenedor flex para los botones en la misma fila */}
           <div className="flex gap-3">
-            <Link href="/atenea" className="flex-1">
+            <Link href="/app/atenea" className="flex-1">
               <button
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 
                           hover:to-green-700 
