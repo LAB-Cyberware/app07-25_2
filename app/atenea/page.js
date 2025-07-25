@@ -352,18 +352,21 @@ Respuesta: [Tu respuesta aquí]`;
               )}
             </div>
           </section>
-          <button 
-              onClick={() => signOut()}
-              className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
-            >
-              {/* Efecto shine */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              
-              <span className="relative flex items-center justify-center gap-2">
-                <span className="text-xl">🚪</span>
-                <span>Cerrar sesión</span>
-              </span>
-            </button>
+          <Link 
+              href="/">
+            <button 
+                onClick={() => signOut()}
+                className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
+                >
+                {/* Efecto shine */}
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                
+                <span className="relative flex items-center justify-center gap-2">
+                  <span className="text-xl">🚪</span>
+                  <span>Cerrar sesión</span>
+                </span>
+              </button>
+            </Link>
 
           {/* Footer */}
           <footer className="text-center mt-16 text-purple-300 text-sm">
