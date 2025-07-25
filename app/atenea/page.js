@@ -209,6 +209,18 @@ Respuesta: [Tu respuesta aquí]`;
               <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">Atenea Digital</h1>
               <Brain className="w-10 h-10 text-purple-300" />
             </div>
+            <button 
+            onClick={() => signOut()}
+            className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
+            >
+            {/* Efecto shine */}
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+            
+            <span className="relative flex items-center justify-center gap-2">
+              <span className="text-xl">🚪</span>
+              <span>Cerrar sesión</span>
+            </span>
+          </button>
             <p className="text-purple-200 text-xl max-w-2xl mx-auto">
               Transforma comentarios tóxicos en obras de arte. Protege tu paz mental, desarma el odio con inteligencia.
             </p>
@@ -363,18 +375,6 @@ Respuesta: [Tu respuesta aquí]`;
               )}
             </div>
           </section>
-          <button 
-              onClick={() => signOut()}
-              className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
-              >
-              {/* Efecto shine */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-              
-              <span className="relative flex items-center justify-center gap-2">
-                <span className="text-xl">🚪</span>
-                <span>Cerrar sesión</span>
-              </span>
-            </button>
    
 
           {/* Footer */}
