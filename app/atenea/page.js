@@ -42,10 +42,6 @@ const AteneaDigitalMVP = () => {
       router.push('/')
       return
     }
-    if (session.user.rol !== 'admin') {
-      router.push('/')
-      return
-    }
   }, [session, status, router])
 
   // --- Demo Mode on Load ---
