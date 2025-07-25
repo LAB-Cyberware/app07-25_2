@@ -11,6 +11,17 @@ export default function UsersList() {
   const [updatingUser, setUpdatingUser] = useState(null);
 
   useEffect(() => {
+    if (!session) {
+      router.push('/')
+      return
+    }
+    if (session.user.rol !== 'admin') {
+      router.push('/')
+      return
+    }
+  }, [session, router])
+
+  useEffect(() => {
     fetchUsers();
   }, []);
 
