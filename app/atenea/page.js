@@ -24,7 +24,7 @@ const AteneaDigitalMVP = () => {
   const [comment, setComment] = useState('');
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey] = useState('AIzaSyCAQ20MgyVnk-6nZ-3Dcj7DwazqG5AKujQ');
   const [showApiKey, setShowApiKey] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
@@ -49,11 +49,6 @@ const AteneaDigitalMVP = () => {
       setShowPricingModal(true);
       return;
     }
-    if (!comment.trim() || !apiKey.trim()) {
-      alert('Por favor, ingresa un comentario y tu API Key de Gemini.');
-      return;
-    }
-
     setIsLoading(true);
     setResponses([]);
     
@@ -210,25 +205,6 @@ Respuesta: [Tu respuesta aquí]`;
           <main className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             {/* Left Column: Generator */}
             <div className="lg:col-span-3 space-y-6">
-              {/* API Key Input */}
-              <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10">
-                <div className="flex items-center gap-3 mb-3">
-                  <Sparkles className="w-5 h-5 text-yellow-400" />
-                  <label className="text-white font-semibold">Tu API Key de Gemini</label>
-                </div>
-                <div className="flex gap-2">
-                  <input
-                    type={showApiKey ? 'text' : 'password'}
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                    placeholder="Pega tu API Key de Google AI Studio"
-                    className="flex-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all"
-                  />
-                  <button onClick={() => setShowApiKey(!showApiKey)} className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
-                    {showApiKey ? '🙈' : '👁️'}
-                  </button>
-                </div>
-              </div>
 
               {/* Input Section */}
               <div className="bg-white/5 backdrop-blur-md rounded-xl p-6 border border-white/10">
