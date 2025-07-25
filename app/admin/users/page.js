@@ -125,6 +125,17 @@ export default function UsersList() {
     );
   }
 
+   if (!session || session.user.rol !== 'admin') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center p-4">
+        <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8 text-center shadow-xl">
+          <div className="text-6xl mb-4">🚫</div>
+          <div className="text-red-600 text-xl font-semibold">Acceso denegado.</div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       
