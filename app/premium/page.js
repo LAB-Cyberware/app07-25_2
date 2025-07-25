@@ -15,7 +15,7 @@ export default function PremiumPage() {
       router.push('/')
       return
     }
-    if (session.user.rol !== 'premium' || 'admin' ) {
+    if (session.user.rol !== 'premium' && session.user.rol !== 'admin') {
       router.push('/')
       return
     }
@@ -32,7 +32,7 @@ export default function PremiumPage() {
     )
   }
 
-  if (!session || session.user.rol !== 'premium' || 'admin') {
+  if (!session || session.user.rol !== 'premium' && session.user.rol !== 'admin') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center p-4">
         <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8 text-center shadow-xl">
