@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X } from 'lucide-react';
+import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X, LogOut } from 'lucide-react';
 
 // --- Mock Data ---
 const MOCK_TESTIMONIALS = [
@@ -199,7 +199,21 @@ Respuesta: [Tu respuesta aquí]`;
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      <div className="min-h-screen bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 p-4 sm:p-8">
+      <div className="min-h-screen bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 p-4 sm:p-8 relative">
+        {/* Botón Cerrar Sesión - Esquina Superior Derecha */}
+        <button 
+          onClick={() => signOut()}
+          className="group fixed top-4 right-4 z-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
+        >
+          {/* Efecto shine */}
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+          
+          <span className="relative flex items-center justify-center gap-2">
+            <LogOut className="w-4 h-4" />
+            <span className="text-sm">Cerrar sesión</span>
+          </span>
+        </button>
+
         {showPricingModal && <PricingModal />}
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -209,18 +223,6 @@ Respuesta: [Tu respuesta aquí]`;
               <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-500">Atenea Digital</h1>
               <Brain className="w-10 h-10 text-purple-300" />
             </div>
-            <button 
-            onClick={() => signOut()}
-            className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
-            >
-            {/* Efecto shine */}
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-            
-            <span className="relative flex items-center justify-center gap-2">
-              <span className="text-xl">🚪</span>
-              <span>Cerrar sesión</span>
-            </span>
-          </button>
             <p className="text-purple-200 text-xl max-w-2xl mx-auto">
               Transforma comentarios tóxicos en obras de arte. Protege tu paz mental, desarma el odio con inteligencia.
             </p>
