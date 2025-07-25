@@ -73,7 +73,7 @@ export default function UsersList() {
   };
 
   // Estado de carga
-  if (loading) {
+  if (loading && session?.user?.rol === 'admin') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-12 text-center border border-white/20">
