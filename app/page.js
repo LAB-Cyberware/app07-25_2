@@ -104,15 +104,35 @@ export default function Login() {
     )
   }
 
-  return ( 
-    <div className="p-6 max-w-md mx-auto bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4">Iniciar sesión</h1>
-      <button
-        onClick={() => signIn('google')}
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-      >
-        Iniciar sesión con Google
-      </button>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-purple-700 flex items-center justify-center p-4">
+      <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8 max-w-md w-full transform transition-all duration-300 hover:scale-105 hover:shadow-3xl">
+        <h1 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Iniciar sesión
+        </h1>
+        
+        <button
+          onClick={() => signIn('google')}
+          className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 
+                   text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 
+                   transform hover:scale-105 hover:shadow-lg active:scale-95
+                   focus:outline-none focus:ring-4 focus:ring-blue-300/50
+                   relative overflow-hidden group"
+        >
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                         transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+          <span className="relative flex items-center justify-center space-x-3">
+            <span className="text-xl">🔐</span>
+            <span className="tracking-wide">Iniciar sesión con Google</span>
+          </span>
+        </button>
+
+        <div className="mt-6 text-center">
+          <p className="text-gray-500 text-sm">
+            Utiliza tu cuenta de Google para acceder
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
