@@ -11,9 +11,10 @@ export default function Login() {
   useEffect(() => { 
     if (session && session.user.rol === 'user') { 
       router.push('/atenea')
-    }
-    if (session && session.user.rol === 'admin') { 
-      router.push('/admin')
+    }else{
+      if (session && session.user.rol === 'admin') { 
+        router.push('/admin')
+      }
     }
   }, [session, router])
 
