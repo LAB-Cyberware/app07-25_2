@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X } from 'lucide-react';
 
 // --- Mock Data ---
@@ -32,6 +33,20 @@ const AteneaDigitalMVP = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
+  const { data: session, status } = useSession()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (status === 'loading') return
+    if (!session) {
+      router.push('/')
+      return
+    }
+    if (session.user.rol !== 'admin') {
+      router.push('/')
+      return
+    }
+  }, [session, status, router])
 
   // --- Demo Mode on Load ---
   useEffect(() => {
@@ -352,21 +367,19 @@ Respuesta: [Tu respuesta aquí]`;
               )}
             </div>
           </section>
-          <Link 
-              href="/">
-            <button 
-                onClick={() => signOut()}
-                className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
-                >
-                {/* Efecto shine */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-                
-                <span className="relative flex items-center justify-center gap-2">
-                  <span className="text-xl">🚪</span>
-                  <span>Cerrar sesión</span>
-                </span>
-              </button>
-            </Link>
+          <button 
+              onClick={() => signOut()}
+              className="group relative flex-1 min-w-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
+              >
+              {/* Efecto shine */}
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+              
+              <span className="relative flex items-center justify-center gap-2">
+                <span className="text-xl">🚪</span>
+                <span>Cerrar sesión</span>
+              </span>
+            </button>
+   
 
           {/* Footer */}
           <footer className="text-center mt-16 text-purple-300 text-sm">
