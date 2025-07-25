@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function UsersList() {
+  const { data: session } = useSession();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +14,8 @@ export default function UsersList() {
     fetchUsers();
   }, []);
 
-  const cambiarRolUser = async (userId) => {
+  // Función unificada para cambiar roles
+  const cambiarRol = async (userId, nuevoRol) => {
     try {
       setUpdatingUser(userId);
       const response = await fetch(`/api/users/${userId}`, {
@@ -20,44 +23,16 @@ export default function UsersList() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ rol: "user" })
+        body: JSON.stringify({ rol: nuevoRol })
       });
 
       if (!response.ok) {
         throw new Error('Error al actualizar rol');
       }
+      
       setUsers(users.map(user => 
         user._id === userId 
-          ? { ...user, rol: "user" }
-          : user
-      ));
-
-    } catch (error) {
-      console.error('Error:', error);
-      setError('Error al cambiar rol');
-    } finally {
-      setUpdatingUser(null);
-    }
-  };
-
-  const cambiarRolAdmin = async (userId) => {
-    try {
-      setUpdatingUser(userId);
-      const response = await fetch(`/api/users/${userId}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ rol: "admin" })
-      });
-
-      if (!response.ok) {
-        throw new Error('Error al actualizar rol');
-      }
-
-      setUsers(users.map(user => 
-        user._id === userId 
-          ? { ...user, rol: "admin" }
+          ? { ...user, rol: nuevoRol }
           : user
       ));
 
@@ -125,7 +100,8 @@ export default function UsersList() {
     );
   }
 
-   if (!session || session.user.rol !== 'admin') {
+  // Verificación de permisos
+  if (!session || session.user.rol !== 'admin') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 flex items-center justify-center p-4">
         <div className="bg-gradient-to-r from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8 text-center shadow-xl">
@@ -133,7 +109,7 @@ export default function UsersList() {
           <div className="text-red-600 text-xl font-semibold">Acceso denegado.</div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -189,10 +165,10 @@ export default function UsersList() {
                 <div className="flex items-center mb-6">
                   <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl font-bold text-white shadow-lg ${
                     user.rol === 'admin' ? 'bg-gradient-to-br from-red-500 to-red-600' :
-                    user.rol === 'moderador' ? 'bg-gradient-to-br from-yellow-500 to-orange-500' :
+                    user.rol === 'premium' ? 'bg-gradient-to-br from-purple-500 to-purple-600' :
                     'bg-gradient-to-br from-green-500 to-emerald-500'
                   }`}>
-                    {user.rol === 'admin' ? '👑' : user.rol === 'moderador' ? '🛡️' : '👤'}
+                    {user.rol === 'admin' ? '👑' : user.rol === 'premium' ? '⭐' : '👤'}
                   </div>
                   <div className="ml-4 flex-1">
                     <h3 className="text-lg font-bold text-slate-800 truncate">
@@ -218,8 +194,8 @@ export default function UsersList() {
                       <span className={`px-4 py-2 text-sm font-semibold rounded-full uppercase tracking-wide border-2 ${
                         user.rol === 'admin' 
                           ? 'bg-gradient-to-r from-red-50 to-pink-50 text-red-700 border-red-200' 
-                          : user.rol === 'moderador'
-                          ? 'bg-gradient-to-r from-yellow-50 to-orange-50 text-orange-700 border-orange-200'
+                          : user.rol === 'premium'
+                          ? 'bg-gradient-to-r from-purple-50 to-purple-50 text-purple-700 border-purple-200'
                           : 'bg-gradient-to-r from-green-50 to-emerald-50 text-green-700 border-green-200'
                       }`}>
                         {user.rol}
@@ -228,18 +204,19 @@ export default function UsersList() {
                   )}
                 </div>
                 
-                {/* Action Buttons */}
-                <div className="space-y-3">
+                {/* Action Buttons - Tres botones separados */}
+                <div className="space-y-2">
+                  {/* Botón User */}
                   {user.rol !== 'user' && (
                     <button 
-                      onClick={() => cambiarRolUser(user._id)}
+                      onClick={() => cambiarRol(user._id, 'user')}
                       disabled={updatingUser === user._id}
                       className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 
-                               text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 
+                               text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 
                                transform hover:-translate-y-0.5 hover:shadow-md active:translate-y-0
                                focus:outline-none focus:ring-4 focus:ring-green-300/50
                                disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
-                               flex items-center justify-center gap-2"
+                               flex items-center justify-center gap-2 text-sm"
                     >
                       {updatingUser === user._id ? (
                         <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
@@ -252,16 +229,40 @@ export default function UsersList() {
                     </button>
                   )}
 
+                  {/* Botón Premium */}
+                  {user.rol !== 'premium' && (
+                    <button 
+                      onClick={() => cambiarRol(user._id, 'premium')}
+                      disabled={updatingUser === user._id}
+                      className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 
+                               text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 
+                               transform hover:-translate-y-0.5 hover:shadow-md active:translate-y-0
+                               focus:outline-none focus:ring-4 focus:ring-purple-300/50
+                               disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+                               flex items-center justify-center gap-2 text-sm"
+                    >
+                      {updatingUser === user._id ? (
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                      ) : (
+                        <>
+                          <span>⭐</span>
+                          <span>Cambiar a Premium</span>
+                        </>
+                      )}
+                    </button>
+                  )}
+
+                  {/* Botón Admin */}
                   {user.rol !== 'admin' && (
                     <button 
-                      onClick={() => cambiarRolAdmin(user._id)}
+                      onClick={() => cambiarRol(user._id, 'admin')}
                       disabled={updatingUser === user._id}
                       className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 
-                               text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-300 
+                               text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 
                                transform hover:-translate-y-0.5 hover:shadow-md active:translate-y-0
                                focus:outline-none focus:ring-4 focus:ring-red-300/50
                                disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
-                               flex items-center justify-center gap-2"
+                               flex items-center justify-center gap-2 text-sm"
                     >
                       {updatingUser === user._id ? (
                         <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
