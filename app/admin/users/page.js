@@ -1,14 +1,16 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react';
 
 export default function UsersList() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [updatingUser, setUpdatingUser] = useState(null);
+  const router = useRouter()
 
   useEffect(() => {
     if (!session) {
@@ -19,7 +21,7 @@ export default function UsersList() {
       router.push('/')
       return
     }
-  }, [session, router])
+  }, [session, status, router])
 
   useEffect(() => {
     fetchUsers();
