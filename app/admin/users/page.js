@@ -13,6 +13,7 @@ export default function UsersList() {
   const router = useRouter()
 
   useEffect(() => {
+    if (status === 'loading') return;
     if (!session) {
       router.push('/')
       return
@@ -23,11 +24,6 @@ export default function UsersList() {
     }
   }, [session, status, router])
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  // Función unificada para cambiar roles
   const cambiarRol = async (userId, nuevoRol) => {
     try {
       setUpdatingUser(userId);
