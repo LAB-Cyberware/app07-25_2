@@ -165,37 +165,79 @@ Respuesta: [Tu respuesta aquí]`;
   };
 
   // --- Sub-Components ---
-  const PricingModal = () => (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
-        <button onClick={() => setShowPricingModal(false)} className="absolute top-4 right-4 text-white/70 hover:text-white">
-          <X />
-        </button>
-        <div className="text-center">
-          <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-2">Desbloquea todo el Potencial</h2>
-          <p className="text-purple-200 mb-6">Alcanzaste el límite de respuestas gratuitas. ¡Pásate a Premium para obtener respuestas ilimitadas y todas las estrategias!</p>
-          <div className="bg-white/10 p-6 rounded-lg mb-6 text-left">
-            <ul className="space-y-3">
-              <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Respuestas Ilimitadas</li>
-              <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Acceso a TODAS las estrategias</li>
-              <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Análisis de tono avanzado</li>
-              <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Soporte prioritario</li>
-            </ul>
-          </div>
-          <div className="bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg p-1">
-            <div className="bg-purple-900 rounded-md px-6 py-4">
-              <p className="text-lg">Plan Mensual</p>
-              <p className="text-4xl font-bold">$6.99 <span className="text-lg font-normal text-purple-300">/ mes</span></p>
-            </div>
-          </div>
-          <button className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-            Actualizar a Premium
+  const PricingModal = () => {
+    const [selectedPlan, setSelectedPlan] = useState('monthly');
+    
+    const plans = [
+      { id: 'weekly', name: 'Plan Semanal', price: '$2.99', period: '/ semana' },
+      { id: 'monthly', name: 'Plan Mensual', price: '$6.99', period: '/ mes' },
+      { id: 'yearly', name: 'Plan Anual', price: '$59.99', period: '/ año' }
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
+          <button onClick={() => setShowPricingModal(false)} className="absolute top-4 right-4 text-white/70 hover:text-white">
+            <X />
           </button>
+          <div className="text-center">
+            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2">Desbloquea todo el Potencial</h2>
+            <p className="text-purple-200 mb-6">Alcanzaste el límite de respuestas gratuitas. ¡Pásate a Premium para obtener respuestas ilimitadas y todas las estrategias!</p>
+            <div className="bg-white/10 p-6 rounded-lg mb-6 text-left">
+              <ul className="space-y-3">
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Respuestas Ilimitadas</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Acceso a TODAS las estrategias</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Análisis de tono avanzado</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Soporte prioritario</li>
+              </ul>
+            </div>
+            
+            {/* Plan Selection */}
+            <div className="space-y-3 mb-6">
+              {plans.map((plan) => (
+                <label key={plan.id} className="block cursor-pointer">
+                  <div className={`relative border-2 rounded-lg p-4 transition-all ${
+                    selectedPlan === plan.id 
+                      ? 'border-purple-400 bg-white/10' 
+                      : 'border-white/20 bg-white/5 hover:border-white/40'
+                  }`}>
+                    <input
+                      type="radio"
+                      name="plan"
+                      value={plan.id}
+                      checked={selectedPlan === plan.id}
+                      onChange={(e) => setSelectedPlan(e.target.value)}
+                      className="absolute opacity-0"
+                    />
+                    <div className="flex items-center justify-between">
+                      <div className="text-left">
+                        <p className="font-semibold text-white">{plan.name}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-2xl font-bold text-white">{plan.price} <span className="text-sm font-normal text-purple-300">{plan.period}</span></p>
+                      </div>
+                    </div>
+                    {selectedPlan === plan.id && (
+                      <div className="absolute top-2 right-2">
+                        <div className="w-4 h-4 bg-purple-500 rounded-full flex items-center justify-center">
+                          <div className="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </label>
+              ))}
+            </div>
+
+            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+              Actualizar a Premium
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
