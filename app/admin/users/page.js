@@ -22,6 +22,7 @@ export default function UsersList() {
       router.push('/')
       return
     }
+    fetchUsers();
   }, [session, status, router])
 
   const cambiarRol = async (userId, nuevoRol) => {
