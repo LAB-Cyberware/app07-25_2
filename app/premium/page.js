@@ -54,7 +54,7 @@ export default function PremiumPage() {
           
           {/* Título con corona */}
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-4xl opacity-80">👑</span>
+            <span className="text-4xl opacity-80">⭐</span>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
               Página de Usuario Premium
             </h1>
