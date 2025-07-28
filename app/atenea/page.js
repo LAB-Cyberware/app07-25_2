@@ -183,7 +183,7 @@ Respuesta: [Tu respuesta aquí]`;
           <div className="text-center">
             <Star className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
             <h2 className="text-2xl font-bold mb-1">Desbloquea todo el Potencial</h2>
-            <div className="bg-white/10 p-6 rounded-lg mb-3 text-left">
+            <div className="bg-white/10 p-4 rounded-lg mb-3 text-left">
               <ul className="space-y-3">
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Respuestas Ilimitadas</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Acceso a TODAS las estrategias</li>
