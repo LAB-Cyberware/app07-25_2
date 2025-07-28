@@ -177,11 +177,11 @@ Respuesta: [Tu respuesta aquí]`;
     return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
         <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
-          <button onClick={() => setShowPricingModal(false)} className="absolute top-3 right-4 text-white/70 hover:text-white">
+          <button onClick={() => setShowPricingModal(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
             <X />
           </button>
           <div className="text-center">
-            <Star className="w-11 h-11 text-yellow-400 mx-auto mb-1" />
+            <Star className="w-10 h-10 text-yellow-400 mx-auto mb-1" />
             <h2 className="text-2xl font-bold mb-1">Desbloquea todo el Potencial</h2>
             <div className="bg-white/10 p-3 rounded-lg mb-3 text-left">
               <ul className="space-y-2">
