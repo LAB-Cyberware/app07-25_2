@@ -30,6 +30,7 @@ const AteneaDigitalMVP = () => {
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
   const [showPricingModal, setShowPricingModal] = useState(false);
+  const [showPayModal, setShowPayModal] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
   const { data: session, status } = useSession()
@@ -166,7 +167,6 @@ Respuesta: [Tu respuesta aquí]`;
   // --- Sub-Components ---
   const PricingModal = () => {
     const [selectedPlan, setSelectedPlan] = useState('monthly');
-    const [showPayModal, setShowPayModal] = useState(false);
     {showPayModal && <PayModal />}
 
 
