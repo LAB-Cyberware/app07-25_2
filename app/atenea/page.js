@@ -247,7 +247,7 @@ Respuesta: [Tu respuesta aquí]`;
                 <X />
           </button>
           <h2>Aquí va el componente de pago</h2>
-          <span>
+          <span className='flex'>
             <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
                 Actualizar y Pagar
             </button>
