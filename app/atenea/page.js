@@ -27,7 +27,6 @@ const AteneaDigitalMVP = () => {
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [apiKey] = useState('AIzaSyCAQ20MgyVnk-6nZ-3Dcj7DwazqG5AKujQ');
-  const [showApiKey, setShowApiKey] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
   const [showPricingModal, setShowPricingModal] = useState(false);
@@ -167,7 +166,10 @@ Respuesta: [Tu respuesta aquí]`;
   // --- Sub-Components ---
   const PricingModal = () => {
     const [selectedPlan, setSelectedPlan] = useState('monthly');
-    
+    const [showPayModal, setShowPayModal] = useState(false);
+    {showPayModal && <PayModal />}
+
+
     const plans = [
       { id: 'weekly', name: 'Plan Semanal', price: '$2.99', period: '/ semana' },
       { id: 'monthly', name: 'Plan Mensual', price: '$6.99', period: '/ mes' },
@@ -229,7 +231,7 @@ Respuesta: [Tu respuesta aquí]`;
               ))}
             </div>
 
-            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+            <button onClick={() => setShowPayModal(true)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
               Actualizar a Premium
             </button>
           </div>
@@ -237,6 +239,22 @@ Respuesta: [Tu respuesta aquí]`;
       </div>
     );
   };
+
+  const PayModal = () => {
+    return (
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
+          <button onClick={() => setShowPayModal(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
+                <X />
+          </button>
+          <h2>Aquí va el componente de pago</h2>
+          <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+              Actualizar y Pagar
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
