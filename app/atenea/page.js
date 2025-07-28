@@ -245,7 +245,7 @@ Respuesta: [Tu respuesta aquí]`;
       </div>
     );
   };
-
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       <div className="min-h-screen bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 p-4 sm:p-8 relative">
