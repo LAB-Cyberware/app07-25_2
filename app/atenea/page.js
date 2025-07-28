@@ -26,7 +26,7 @@ const AteneaDigitalMVP = () => {
   const [comment, setComment] = useState('');
   const [responses, setResponses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey] = useState('AIzaSyCAQ20MgyVnk-6nZ-3Dcj7DwazqG5AKujQ');
+  const [apiKey] = useState('AIzaSyAxrO75Dy9QxibfFsamlZYxKIcqFUNrt8w');
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
   const [showPricingModal, setShowPricingModal] = useState(false);
