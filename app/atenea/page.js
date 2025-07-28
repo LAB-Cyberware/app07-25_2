@@ -181,7 +181,7 @@ Respuesta: [Tu respuesta aquí]`;
             <X />
           </button>
           <div className="text-center">
-            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
             <h2 className="text-2xl font-bold mb-2">Desbloquea todo el Potencial</h2>
             <div className="bg-white/10 p-6 rounded-lg mb-6 text-left">
               <ul className="space-y-3">
@@ -193,7 +193,7 @@ Respuesta: [Tu respuesta aquí]`;
             </div>
             
             {/* Plan Selection */}
-            <div className="space-y-3 mb-6">
+            <div className="space-y-3 mb-4">
               {plans.map((plan) => (
                 <label key={plan.id} className="block cursor-pointer">
                   <div className={`relative border-2 rounded-lg p-4 transition-all ${
