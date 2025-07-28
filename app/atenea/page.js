@@ -181,9 +181,9 @@ Respuesta: [Tu respuesta aquí]`;
             <X />
           </button>
           <div className="text-center">
-            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
-            <h2 className="text-2xl font-bold mb-2">Desbloquea todo el Potencial</h2>
-            <div className="bg-white/10 p-6 rounded-lg mb-6 text-left">
+            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
+            <h2 className="text-2xl font-bold mb-1">Desbloquea todo el Potencial</h2>
+            <div className="bg-white/10 p-6 rounded-lg mb-3 text-left">
               <ul className="space-y-3">
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Respuestas Ilimitadas</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Acceso a TODAS las estrategias</li>
@@ -193,7 +193,7 @@ Respuesta: [Tu respuesta aquí]`;
             </div>
             
             {/* Plan Selection */}
-            <div className="space-y-3 mb-4">
+            <div className="space-y-2 mb-2">
               {plans.map((plan) => (
                 <label key={plan.id} className="block cursor-pointer">
                   <div className={`relative border-2 rounded-lg p-4 transition-all ${
