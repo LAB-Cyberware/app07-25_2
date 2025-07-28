@@ -165,6 +165,7 @@ Respuesta: [Tu respuesta aquí]`;
   };
 
   // --- Sub-Components ---
+  
   const PricingModal = () => {
     const [selectedPlan, setSelectedPlan] = useState('monthly');
     
@@ -230,7 +231,13 @@ Respuesta: [Tu respuesta aquí]`;
               ))}
             </div>
 
-            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+            <button 
+              onClick={() => {
+                setShowPricingModal(false);
+                setShowPaymentModal(true);
+              }}
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
               Actualizar a Premium
             </button>
           </div>
