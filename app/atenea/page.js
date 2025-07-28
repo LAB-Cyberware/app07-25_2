@@ -246,8 +246,8 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayModal(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>
-          <h2 className='space-y-5 mb-2'>Aquí va el componente de pago</h2>
-          <span className='flex'>
+          <h2 className='space-y-5 mb-5'>Aquí va el componente de pago</h2>
+          <span className='flex gap-4'>
             <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
                 Actualizar y Pagar
             </button>
