@@ -176,22 +176,25 @@ Respuesta: [Tu respuesta aquí]`;
     ];
 
     return (
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        {/* The change is in the line below. I added max-h-[95vh] and overflow-y-auto */}
-        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20 max-h-[95vh] overflow-y-auto">
-          <button onClick={() => setShowPricingModal(false)} className="absolute top-4 right-4 text-white/70 hover:text-white">
-            <X />
-          </button>
-          <div className="text-center">
-            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">Desbloquea todo el Potencial</h2>
-            <p className="text-purple-200 mb-6">Alcanzaste el límite de respuestas gratuitas. ¡Pásate a Premium para obtener respuestas ilimitadas y todas las estrategias!</p>
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-2xl w-full my-8 text-white relative shadow-2xl shadow-purple-500/20 max-h-[90vh] overflow-y-auto">
+          <div className="sticky top-0 bg-gradient-to-br from-purple-900 to-blue-900 p-6 pb-4 border-b border-purple-500/30 rounded-t-2xl">
+            <button onClick={() => setShowPricingModal(false)} className="absolute top-4 right-4 text-white/70 hover:text-white transition-colors">
+              <X className="w-6 h-6" />
+            </button>
+            <div className="text-center">
+              <Star className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
+              <h2 className="text-2xl font-bold mb-2">Desbloquea todo el Potencial</h2>
+            </div>
+          </div>
+          
+          <div className="p-6 pt-4">
             <div className="bg-white/10 p-6 rounded-lg mb-6 text-left">
               <ul className="space-y-3">
-                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Respuestas Ilimitadas</li>
-                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Acceso a TODAS las estrategias</li>
-                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Análisis de tono avanzado</li>
-                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Soporte prioritario</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> Respuestas Ilimitadas</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> Acceso a TODAS las estrategias</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> Análisis de tono avanzado</li>
+                <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" /> Soporte prioritario</li>
               </ul>
             </div>
             
@@ -235,9 +238,9 @@ Respuesta: [Tu respuesta aquí]`;
             <button 
               onClick={() => {
                 setShowPricingModal(false);
-                // setShowPaymentModal(true); // You might need a payment modal state
+                setShowPaymentModal(true);
               }}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 mb-4"
             >
               Actualizar a Premium
             </button>
@@ -246,7 +249,7 @@ Respuesta: [Tu respuesta aquí]`;
       </div>
     );
   };
-
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       <div className="min-h-screen bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 p-4 sm:p-8 relative">
