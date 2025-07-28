@@ -177,7 +177,7 @@ Respuesta: [Tu respuesta aquí]`;
 
     return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-lg w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
+        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-2xl w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
           <button onClick={() => setShowPricingModal(false)} className="absolute top-4 right-4 text-white/70 hover:text-white">
             <X />
           </button>
