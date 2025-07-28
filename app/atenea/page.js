@@ -181,10 +181,10 @@ Respuesta: [Tu respuesta aquí]`;
             <X />
           </button>
           <div className="text-center">
-            <Star className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
+            <Star className="w-11 h-11 text-yellow-400 mx-auto mb-1" />
             <h2 className="text-2xl font-bold mb-1">Desbloquea todo el Potencial</h2>
             <div className="bg-white/10 p-3 rounded-lg mb-3 text-left">
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Respuestas Ilimitadas</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Acceso a TODAS las estrategias</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-green-400" /> Análisis de tono avanzado</li>
