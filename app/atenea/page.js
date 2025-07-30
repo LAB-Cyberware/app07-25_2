@@ -248,7 +248,7 @@ Respuesta: [Tu respuesta aquí]`;
           </button>
           <h2 className='space-y-5 mb-5'>Aquí va el componente de pago</h2>
           <span className='flex gap-8'>
-            {user.rol !== 'premium' && (
+            {session.user.rol !== 'premium' && (
               <button  
               onClick={() => cambiarRol(user._id, 'premium')}
               disabled={updatingUser === user._id} 
