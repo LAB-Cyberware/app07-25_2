@@ -274,7 +274,7 @@ Respuesta: [Tu respuesta aquí]`;
   const cambiarRol = async (nuevoRol) => {
     try {
       setUpdatingUser();
-      const response = await fetch(`/api/atenea/${user}`, {
+      const response = await fetch(`/api/atenea/${session.user}`, {
         method: 'PATCH', 
         headers: {
           'Content-Type': 'application/json',
