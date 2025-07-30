@@ -248,9 +248,20 @@ Respuesta: [Tu respuesta aquí]`;
           </button>
           <h2 className='space-y-5 mb-5'>Aquí va el componente de pago</h2>
           <span className='flex gap-8'>
-            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                Actualizar y Pagar
-            </button>
+            {user.rol !== 'premium' && (
+              <button  
+              onClick={() => cambiarRol(user._id, 'premium')}
+              disabled={updatingUser === user._id} 
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                {updatingUser === user._id ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                ) : (
+                  <>
+                    Actualizar y Pagar
+                  </>
+                )}
+              </button>
+            )}
             <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
                 Cancelar
             </button>
@@ -259,6 +270,57 @@ Respuesta: [Tu respuesta aquí]`;
       </div>
     )
   }
+
+  const cambiarRol = async (userId, nuevoRol) => {
+    try {
+      setUpdatingUser(userId);
+      const response = await fetch(`/api/users/${userId}`, {
+        method: 'PATCH', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ rol: nuevoRol })
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar rol');
+      }
+      
+      setUsers(users.map(user => 
+        user._id === userId 
+          ? { ...user, rol: nuevoRol }
+          : user
+      ));
+
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Error al cambiar rol');
+    } finally {
+      setUpdatingUser(null);
+    }
+  };
+
+  {user.rol !== 'premium' && (
+      <button 
+        onClick={() => cambiarRol(user._id, 'premium')}
+        disabled={updatingUser === user._id}
+        className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 
+                  text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 
+                  transform hover:-translate-y-0.5 hover:shadow-md active:translate-y-0
+                  focus:outline-none focus:ring-4 focus:ring-purple-300/50
+                  disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+                  flex items-center justify-center gap-2 text-sm"
+      >
+        {updatingUser === user._id ? (
+          <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+        ) : (
+          <>
+            <span>⭐</span>
+            <span>Cambiar a Premium</span>
+          </>
+        )}
+      </button>
+    )}
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
