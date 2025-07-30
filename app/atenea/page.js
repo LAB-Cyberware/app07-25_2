@@ -250,8 +250,8 @@ Respuesta: [Tu respuesta aquí]`;
           <span className='flex gap-8'>
             {session.user.rol !== 'premium' && (
               <button  
-              onClick={() => cambiarRol(user._id, 'premium')}
-              disabled={updatingUser === user._id} 
+              onClick={() => cambiarRol('premium')}
+              disabled={updatingUser} 
               className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
                 {updatingUser === user._id ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
