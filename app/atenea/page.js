@@ -59,7 +59,7 @@ const AteneaDigitalMVP = () => {
 
   // --- Core Logic ---
   const generateResponses = async () => {
-    if (usageCount >= MAX_FREE_USES) {
+    if (usageCount >= MAX_FREE_USES && session?.user?.rol !== 'premium') {
       setShowPricingModal(true);
       return;
     }
