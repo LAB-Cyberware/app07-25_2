@@ -3,9 +3,10 @@
 import { Providers } from './providers'
 import './globals.css';
 import { useSession, signOut } from 'next-auth/react';
+import LogOut from 'lucide-react'
 
 export default function RootLayout({ children }) {
-  const { data: session } = useSession
+  const { data: session } = useSession();
   return (
     <html lang="es">
       <body>
