@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X, LogOut } from 'lucide-react';
+import { isAssetError } from 'next/dist/client/route-loader';
 
 // --- Mock Data ---
 const MOCK_TESTIMONIALS = [
@@ -52,8 +53,10 @@ const AteneaDigitalMVP = () => {
     setResponses([
       { strategy: 'Sarcasmo Elegante', text: 'Vaya, mi fan número uno. Agradezco tu dedicación inquebrantable para consumir todo mi contenido. Tu apoyo es... notado.', isLocked: false },
       { strategy: 'Análisis Pseudo-Psicológico', text: 'Interesante. Tu comentario es, en sí mismo, una forma de buscar atención en mi publicación. ¿No es fascinante cómo funciona la psique humana? Gracias por esta valiosa lección práctica de proyección.', isLocked: false },
-      { strategy: 'Deconstrucción Intelectual', text: 'Has usado una palabra para expresar una emoción compleja. Si bien es un enfoque minimalista, carece de datos. ¿Podrías desarrollar tu tesis? Espero tu ensayo.', isLocked: true },
-      { strategy: 'Confusión Absurda', text: '¡Gracias por el recordatorio! Justo ahora estaba procrastinando en mi trabajo de "ignorar consejos no solicitados". Tu comentario me ha ayudado a volver a mi tarea principal.', isLocked: true },
+      { strategy: 'Deconstrucción Intelectual', text: 'Has usado una palabra para expresar una emoción compleja. Si bien es un enfoque minimalista, carece de datos. ¿Podrías desarrollar tu tesis? Espero tu ensayo.', 
+        isLocked: !(session?.user?.rol === 'premium') },
+      { strategy: 'Confusión Absurda', text: '¡Gracias por el recordatorio! Justo ahora estaba procrastinando en mi trabajo de "ignorar consejos no solicitados". Tu comentario me ha ayudado a volver a mi tarea principal.', 
+        isLocked: !(session?.user?.rol === 'premium') },
     ]);
   }, []);
 
@@ -311,19 +314,6 @@ Respuesta: [Tu respuesta aquí]`;
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       <div className="min-h-screen bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 p-4 sm:p-8 relative">
-        {/* Botón Cerrar Sesión - Esquina Superior Derecha */}
-        <button 
-          onClick={() => signOut()}
-          className="group fixed top-4 right-4 z-40 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-red-300/50 overflow-hidden"
-        >
-          {/* Efecto shine */}
-          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-          
-          <span className="relative flex items-center justify-center gap-2">
-            <LogOut className="w-4 h-4" />
-            <span className="text-sm">Cerrar sesión</span>
-          </span>
-        </button>
 
         {showPricingModal && <PricingModal />}
         <div className="max-w-6xl mx-auto">
@@ -353,12 +343,14 @@ Respuesta: [Tu respuesta aquí]`;
                   className="w-full h-32 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 resize-none transition-all"
                 />
                 <div className="flex justify-between items-center mt-4">
+                  {session?.user?.rol !== 'premium' && (
                   <div className="text-purple-200 text-sm">
                     <p>Respuestas gratuitas restantes: <span className="font-bold text-white">{Math.max(0, MAX_FREE_USES - usageCount)}/{MAX_FREE_USES}</span></p>
                     <div className="w-full bg-white/10 rounded-full h-1.5 mt-1">
                       <div className="bg-gradient-to-r from-pink-500 to-purple-500 h-1.5 rounded-full" style={{ width: `${((MAX_FREE_USES - usageCount) / MAX_FREE_USES) * 100}%` }}></div>
                     </div>
                   </div>
+                  )}
                   <button
                     onClick={generateResponses}
                     disabled={isLoading}
