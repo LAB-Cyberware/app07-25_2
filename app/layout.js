@@ -2,8 +2,7 @@
 
 import { Providers } from './providers'
 import './globals.css';
-import { useSession } from 'next-auth/react';
-import Link from 'next/link'
+import { useSession, signOut } from 'next-auth/react';
 
 export default function RootLayout({ children }) {
   const { data: session } = useSession
