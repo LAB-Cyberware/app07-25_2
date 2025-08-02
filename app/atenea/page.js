@@ -69,15 +69,12 @@ const AteneaDigitalMVP = () => {
     setIsLoading(true);
     setResponses([]);
 
-    if (session?.user?.rol === 'premium') {
-      let estrategias;
-
-      estrategias = {
+    const listaEstrategias = {
         sarcasmo: { 
           name: 'Sarcasmo Elegante',
           description: 'Ironía fina que expone la ridiculez.'
         },
-        pseudopsicologico: {
+        psicologico: {
           name: 'Análisis Pseudo-Psicológico',
           description: 'Falsa compasión que trata al hater como un paciente.'
         },
@@ -85,21 +82,19 @@ const AteneaDigitalMVP = () => {
           name: 'Deconstrucción Intelectual',
           description: 'Desmontar el comentario como si fuera una pieza de lógica fallida.'
         },
-        confusion: {
+        confusión: {
           name: 'Confusión Absurda',
           description: 'Una respuesta tan inesperada que rompe la lógica del ataque.'
-      } 
+      }
     }
-      } else if(session?.user?.rol !== 'premium') {
-        estrategias = {
-          sarcasmo: { 
-            name: 'Sarcasmo Elegante',
-            description: 'Ironía fina que expone la ridiculez.'
-          },
-          pseudopsicologico: {
-            name: 'Análisis Pseudo-Psicológico',
-            description: 'Falsa compasión que trata al hater como un paciente.'
-          },
+
+    let estrategias;
+    if (session?.user?.rol === 'premium') {
+      estrategias = listaEstrategias;
+      } else {
+        estrategias = { 
+          sarcasmo: listaEstrategias.sarcasmo,
+          psicologico: listaEstrategias.psicologico
         }
       }
     
