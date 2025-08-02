@@ -48,17 +48,19 @@ const AteneaDigitalMVP = () => {
   }, [session, status, router])
 
   // --- Demo Mode on Load ---
-  useEffect(() => {
+  useEffect(()=> {
+    if (session?.user) {
     setComment('Otra vez tú... ¿No te cansas de buscar atención?');
     setResponses([
       { strategy: 'Sarcasmo Elegante', text: 'Vaya, mi fan número uno. Agradezco tu dedicación inquebrantable para consumir todo mi contenido. Tu apoyo es... notado.', isLocked: false },
       { strategy: 'Análisis Pseudo-Psicológico', text: 'Interesante. Tu comentario es, en sí mismo, una forma de buscar atención en mi publicación. ¿No es fascinante cómo funciona la psique humana? Gracias por esta valiosa lección práctica de proyección.', isLocked: false },
       { strategy: 'Deconstrucción Intelectual', text: 'Has usado una palabra para expresar una emoción compleja. Si bien es un enfoque minimalista, carece de datos. ¿Podrías desarrollar tu tesis? Espero tu ensayo.', 
-        isLocked: !(session?.user?.rol === 'premium') },
+        isLocked: session?.user?.rol !== 'premium' },
       { strategy: 'Confusión Absurda', text: '¡Gracias por el recordatorio! Justo ahora estaba procrastinando en mi trabajo de "ignorar consejos no solicitados". Tu comentario me ha ayudado a volver a mi tarea principal.', 
-        isLocked: !(session?.user?.rol === 'premium') },
+        isLocked: session?.user?.rol !== 'premium' },
     ]);
-  }, []);
+  }
+  }, [session]);
 
   // --- Core Logic ---
   const generateResponses = async () => {
@@ -157,12 +159,12 @@ Respuesta: [Tu respuesta aquí]`;
     const sections = text.split('---').map(s => s.trim());
     return sections.map(section => {
       const strategyMatch = section.match(/Estrategia: (.*)/);
-      const responseMatch = section.match(/Respuesta: (.*)/s);
+      const responseMatch = section.match(/Respuesta: (.*)/);
       
       if (strategyMatch && responseMatch) {
         const strategy = strategyMatch[1].trim();
         const responseText = responseMatch[1].trim();
-        const isLocked = !FREE_STRATEGIES.includes(strategy);
+        const isLocked = session?.user?.rol !== 'premium' && !FREE_STRATEGIES.includes(strategy);
         return { strategy, text: responseText, isLocked };
       }
       return null;
