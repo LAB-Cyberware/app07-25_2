@@ -68,6 +68,40 @@ const AteneaDigitalMVP = () => {
     }
     setIsLoading(true);
     setResponses([]);
+
+    if (session?.user?.rol === 'premium') {
+      let estrategias;
+
+      estrategias = {
+        sarcasmo: { 
+          name: 'Sarcasmo Elegante',
+          description: 'Ironía fina que expone la ridiculez.'
+        },
+        pseudopsicologico: {
+          name: 'Análisis Pseudo-Psicológico',
+          description: 'Falsa compasión que trata al hater como un paciente.'
+        },
+        intelectual: {
+          name: 'Deconstrucción Intelectual',
+          description: 'Desmontar el comentario como si fuera una pieza de lógica fallida.'
+        },
+        confusion: {
+          name: 'Confusión Absurda',
+          description: 'Una respuesta tan inesperada que rompe la lógica del ataque.'
+      } 
+    }
+      } else if(session?.user?.rol !== 'premium') {
+        estrategias = {
+          sarcasmo: { 
+            name: 'Sarcasmo Elegante',
+            description: 'Ironía fina que expone la ridiculez.'
+          },
+          pseudopsicologico: {
+            name: 'Análisis Pseudo-Psicológico',
+            description: 'Falsa compasión que trata al hater como un paciente.'
+          },
+        }
+      }
     
     const prompt = `### ROL Y OBJETIVO ###
 Eres un Agente IA especializado llamado "Atenea Digital". Tu personalidad es una fusión de un psicólogo experto, un maestro de la retórica y un comediante ingenioso. Tu misión es analizar comentarios de "haters" y generar 4 respuestas ingeniosas, cada una con una estrategia diferente, para desarmar la agresión y proteger la paz mental del creador.
@@ -81,10 +115,7 @@ Eres un Agente IA especializado llamado "Atenea Digital". Tu personalidad es una
 
 ### ESTRATEGIAS REQUERIDAS ###
 Genera exactamente una respuesta para cada una de las siguientes estrategias:
-1.  Sarcasmo Elegante: Ironía fina que expone la ridiculez.
-2.  Análisis Pseudo-Psicológico: Falsa compasión que trata al hater como un paciente.
-3.  Deconstrucción Intelectual: Desmontar el comentario como si fuera una pieza de lógica fallida.
-4.  Confusión Absurda: Una respuesta tan inesperada que rompe la lógica del ataque.
+"${estrategias}"
 
 ### TAREA ###
 Analiza el siguiente comentario de un hater y genera 4 respuestas, una por cada estrategia listada.
