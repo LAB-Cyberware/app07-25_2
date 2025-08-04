@@ -374,7 +374,7 @@ Respuesta: [Tu respuesta aquí]`;
               transactionInfo: {
                 totalPriceStatus: 'FINAL',
                 totalPriceLabel: 'Total',
-                totalPrice: {selectedPrice},
+                totalPrice: ''+selectedPrice+'',
                 currencyCode: 'CLP',
                 countryCode: 'CL',
               },
