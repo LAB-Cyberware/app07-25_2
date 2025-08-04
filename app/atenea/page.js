@@ -5,7 +5,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X, LogOut } from 'lucide-react';
 import { isAssetError } from 'next/dist/client/route-loader';
-import { GPAY_BUTTON_CONTAINER_ID } from './googlepay';
+import { GPAY_BUTTON_CONTAINER_ID, onGooglePayLoaded } from './googlepay';
 
 // --- Mock Data ---
 const MOCK_TESTIMONIALS = [
@@ -340,6 +340,10 @@ Respuesta: [Tu respuesta aquí]`;
      return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100 p-4">
         <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
+          <script
+            async src="https://pay.google.com/gp/p/js/pay.js"
+            onload="onGooglePayLoaded()">
+          </script>
           <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>

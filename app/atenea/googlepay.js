@@ -132,7 +132,7 @@ function renderGooglePayButton() {
  * @see {@link https://developers.google.com/pay/api/web/reference/client#isReadyToPay}
  * @returns {void}
  */
-function onGooglePayLoaded() {
+export function onGooglePayLoaded() {
   // Create a deep copy of the base Google Pay request object.
   // This ensures that any modifications made to the request object
   // do not affect the original base request.
