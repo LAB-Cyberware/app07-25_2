@@ -352,7 +352,7 @@ Respuesta: [Tu respuesta aquí]`;
           className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
 
           </button>
-          {showGooglePayMethod && <GPAY_BUTTON_CONTAINER_ID />}
+          {showGooglePayMethod && <div id={GPAY_BUTTON_CONTAINER_ID}></div>}
         </div>
       </div>
      )
