@@ -202,6 +202,7 @@ Respuesta: [Tu respuesta aquí]`;
 
   // --- Sub-Components ---
   const PricingModal = () => {
+    const [selectedPrice, setSelectedPrice] = useState('$6.99');
     const [selectedPlan, setSelectedPlan] = useState('monthly');
 
     const plans = [
@@ -242,7 +243,10 @@ Respuesta: [Tu respuesta aquí]`;
                       name="plan"
                       value={plan.id}
                       checked={selectedPlan === plan.id}
-                      onChange={(e) => setSelectedPlan(e.target.value)}
+                      onChange={(e) => {
+                        setSelectedPlan(e.target.value)
+                        setSelectedPrice(plan.price)}
+                      }
                       className="absolute opacity-0"
                     />
                     <div className="flex items-center justify-between">
@@ -371,9 +375,9 @@ Respuesta: [Tu respuesta aquí]`;
               transactionInfo: {
                 totalPriceStatus: 'FINAL',
                 totalPriceLabel: 'Total',
-                totalPrice: '100.00',
-                currencyCode: 'USD',
-                countryCode: 'US',
+                totalPrice: selectedPrice,
+                currencyCode: 'CLP',
+                countryCode: 'CL',
               },
             }}
             onLoadPaymentData={paymentRequest => {
