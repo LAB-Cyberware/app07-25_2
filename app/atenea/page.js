@@ -5,6 +5,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X, LogOut } from 'lucide-react';
 import { isAssetError } from 'next/dist/client/route-loader';
+import renderGooglePayButton from './googlepay';
 
 // --- Mock Data ---
 const MOCK_TESTIMONIALS = [
@@ -32,6 +33,7 @@ const AteneaDigitalMVP = () => {
   const [usageCount, setUsageCount] = useState(0);
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
+  const [showPayMethod, setShowPayMethod] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
   const [updatingUser, setUpdatingUser] = useState(null);
@@ -283,21 +285,15 @@ Respuesta: [Tu respuesta aquí]`;
           <span className='flex gap-8'>
             {session?.user?.rol !== 'premium' && (
               <button  
-              onClick={() => cambiarRol('premium')}
-              disabled={updatingUser} 
+              onClick={() => setShowPayMethod(true)} 
               className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                {updatingUser === session.user.id ? (
-                <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                ) : (
-                  <>
-                    Actualizar y Pagar
-                  </>
-                )}
+                  Actualizar y Pagar
               </button>
             )}
             <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
                 Cancelar
             </button>
+            {showPayMethod && <PayMethod />}
           </span>
         </div>
       </div>
@@ -338,6 +334,19 @@ Respuesta: [Tu respuesta aquí]`;
       setUpdatingUser(null);
     }
   };
+
+  const PayMethod = () => {
+     return (
+      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100 p-4">
+        <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
+          <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
+                <X />
+          </button>
+          <renderGooglePayButton />
+        </div>
+      </div>
+     )
+    }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
