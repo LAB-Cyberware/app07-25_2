@@ -34,7 +34,7 @@ const AteneaDigitalMVP = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
   const [showPayMethod, setShowPayMethod] = useState(false);
-  const [selectedPrice, setSelectedPrice] = useState('$6.99');
+  const [selectedPrice, setSelectedPrice] = useState('10000');
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
   const [updatingUser, setUpdatingUser] = useState(null);
@@ -205,9 +205,9 @@ Respuesta: [Tu respuesta aquí]`;
     const [selectedPlan, setSelectedPlan] = useState('monthly');
 
     const plans = [
-      { id: 'weekly', name: 'Plan Semanal', price: '$2.99', period: '/ semana' },
-      { id: 'monthly', name: 'Plan Mensual', price: '$6.99', period: '/ mes' },
-      { id: 'yearly', name: 'Plan Anual', price: '$59.99', period: '/ año' }
+      { id: 'weekly', name: 'Plan Semanal', price: '5000', period: '/ semana' },
+      { id: 'monthly', name: 'Plan Mensual', price: '10000', period: '/ mes' },
+      { id: 'yearly', name: 'Plan Anual', price: '80000', period: '/ año' }
     ];
 
     return (
@@ -382,7 +382,7 @@ Respuesta: [Tu respuesta aquí]`;
             onLoadPaymentData={paymentRequest => {
               console.log('load payment data', paymentRequest);
             }}
-          />;
+          />
         </div>
       </div>
      )
