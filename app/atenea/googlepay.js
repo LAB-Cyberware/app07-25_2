@@ -1,5 +1,5 @@
 // The DOM element that the Google Pay button will be rendered into
-const GPAY_BUTTON_CONTAINER_ID = 'gpay-container';
+export const GPAY_BUTTON_CONTAINER_ID = 'gpay-container';
 
 // Update the `merchantId` and `merchantName` properties with your own values.
 // These fields are optional when the environment is `TEST`.
@@ -106,7 +106,7 @@ const deepCopy = obj => JSON.parse(JSON.stringify(obj));
  * @see {@link https://developers.google.com/pay/api/web/reference/client#createButton}
  * @returns {void}
  */
-export default function renderGooglePayButton() {
+function renderGooglePayButton() {
   // Create a Google Pay button using the PaymentsClient.
   const button = getGooglePaymentsClient().createButton({
     // Set the click handler for the button to the onGooglePaymentButtonClicked

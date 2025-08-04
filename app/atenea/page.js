@@ -5,7 +5,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X, LogOut } from 'lucide-react';
 import { isAssetError } from 'next/dist/client/route-loader';
-import renderGooglePayButton from './googlepay';
+import { GPAY_BUTTON_CONTAINER_ID } from './googlepay';
 
 // --- Mock Data ---
 const MOCK_TESTIMONIALS = [
@@ -34,6 +34,7 @@ const AteneaDigitalMVP = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
   const [showPayMethod, setShowPayMethod] = useState(false);
+  const [showGooglePayMethod, setShowGooglePayMethod] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
   const [updatingUser, setUpdatingUser] = useState(null);
@@ -342,7 +343,7 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>
-          <renderGooglePayButton />
+          {showGooglePayMethod && <GPAY_BUTTON_CONTAINER_ID />}
         </div>
       </div>
      )
