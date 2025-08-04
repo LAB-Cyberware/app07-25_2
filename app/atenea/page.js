@@ -34,7 +34,7 @@ const AteneaDigitalMVP = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [showPayModal, setShowPayModal] = useState(false);
   const [showPayMethod, setShowPayMethod] = useState(false);
-  const [showGooglePayMethod, setShowGooglePayMethod] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState('$6.99');
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
   const [updatingUser, setUpdatingUser] = useState(null);
@@ -202,7 +202,6 @@ Respuesta: [Tu respuesta aquí]`;
 
   // --- Sub-Components ---
   const PricingModal = () => {
-    const [selectedPrice, setSelectedPrice] = useState('$6.99');
     const [selectedPlan, setSelectedPlan] = useState('monthly');
 
     const plans = [
@@ -375,7 +374,7 @@ Respuesta: [Tu respuesta aquí]`;
               transactionInfo: {
                 totalPriceStatus: 'FINAL',
                 totalPriceLabel: 'Total',
-                totalPrice: selectedPrice,
+                totalPrice: {selectedPrice},
                 currencyCode: 'CLP',
                 countryCode: 'CL',
               },
