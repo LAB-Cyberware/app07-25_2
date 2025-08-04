@@ -345,12 +345,41 @@ Respuesta: [Tu respuesta aquí]`;
           </button>
           <GooglePayButton
             environment="TEST"
-            buttonColor="default"
-            buttonType="plain"
-            buttonRadius="4"
-            buttonSizeMode="fill"
-            style={{width: 299, height: 40}}
-            />
+            paymentRequest={{
+              apiVersion: 2,
+              apiVersionMinor: 0,
+              allowedPaymentMethods: [
+                {
+                  type: 'CARD',
+                  parameters: {
+                    allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                    allowedCardNetworks: ['MASTERCARD', 'VISA'],
+                  },
+                  tokenizationSpecification: {
+                    type: 'PAYMENT_GATEWAY',
+                    parameters: {
+                      gateway: 'example',
+                      gatewayMerchantId: 'exampleGatewayMerchantId',
+                    },
+                  },
+                },
+              ],
+              merchantInfo: {
+                merchantId: '12345678901234567890',
+                merchantName: 'Demo Merchant',
+              },
+              transactionInfo: {
+                totalPriceStatus: 'FINAL',
+                totalPriceLabel: 'Total',
+                totalPrice: '100.00',
+                currencyCode: 'USD',
+                countryCode: 'US',
+              },
+            }}
+            onLoadPaymentData={paymentRequest => {
+              console.log('load payment data', paymentRequest);
+            }}
+          />;
         </div>
       </div>
      )
