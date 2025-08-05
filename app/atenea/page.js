@@ -285,7 +285,7 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayModal(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>
-          <h2 className='space-y-5 mb-5'>Aquí va el componente de pago</h2>
+          <h2 className='space-y-5 mb-5'>¿Quieres comprar y actualizar a Premium?</h2>
           <span className='flex gap-8'>
             {session?.user?.rol !== 'premium' && (
               <button  
