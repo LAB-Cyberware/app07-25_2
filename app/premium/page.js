@@ -63,7 +63,7 @@ export default function PremiumPage() {
           
           {/* Mensaje de bienvenida */}
           <p className="text-lg text-purple-200 font-medium mb-6">
-            ¡Bienvenido, <span className="text-yellow-600 font-semibold">{session.user.name}</span>!
+            ¡Bienvenido, <span className="text-yellow-900 font-semibold">{session.user.name}</span>!
           </p>
           
           {/* Tarjeta de información con gradiente */}
@@ -73,12 +73,12 @@ export default function PremiumPage() {
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-red-500 to-red-400"></div>
             
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-red-800 font-medium">
+              <div className="flex items-center gap-2 text-white font-medium">
                 <span className="w-2 h-2 bg-red-500 rounded-full"></span>
                 <span className="text-xl">📧</span>
                 <span>Email: {session.user.email}</span>
               </div>
-              <div className="flex items-center gap-2 text-red-800 font-medium">
+              <div className="flex items-center gap-2 text-white font-medium">
                 <span className="w-2 h-2 bg-red-500 rounded-full"></span>
                 <span className="text-xl">🎯</span>
                 <span>Rol actual: {session.user.rol}</span>
