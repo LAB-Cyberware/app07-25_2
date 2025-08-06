@@ -63,11 +63,11 @@ export default function PremiumPage() {
           
           {/* Mensaje de bienvenida */}
           <p className="text-lg text-purple-200 font-medium mb-6">
-            ¡Bienvenido, <span className="text-gold-600 font-semibold">{session.user.name}</span>!
+            ¡Bienvenido, <span className="text-yellow-600 font-semibold">{session.user.name}</span>!
           </p>
           
           {/* Tarjeta de información con gradiente */}
-          <div className="relative bg-white/10 bg-gradient-to-r from-red-50 to-pink-50 border border-white/10 rounded-2xl p-6 mb-8 overflow-hidden hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300">
+          <div className="relative bg-white/10 bg-gradient-to-r border border-white/10 rounded-2xl p-6 mb-8 overflow-hidden hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300">
             
             {/* Barra lateral izquierda */}
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-red-500 to-red-400"></div>
@@ -89,8 +89,8 @@ export default function PremiumPage() {
         <div className="flex gap-3">
             <Link href="/atenea" className="flex-1">
               <button
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 
-                          hover:to-green-700 
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 
+                          hover:to-pink-700 
                           text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 
                           transform hover:scale-105 hover:shadow-lg active:scale-95
                           focus:outline-none focus:ring-4 focus:ring-green-300/50"
