@@ -63,7 +63,7 @@ export default function PremiumPage() {
           
           {/* Mensaje de bienvenida */}
           <p className="text-lg text-purple-200 font-medium mb-6">
-            ¡Bienvenido, <span className="text-yellow-900 font-semibold">{session.user.name}</span>!
+            ¡Bienvenido, <span className="text-yellow-100 font-semibold">{session.user.name}</span>!
           </p>
           
           {/* Tarjeta de información con gradiente */}
