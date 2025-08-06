@@ -62,12 +62,12 @@ export default function PremiumPage() {
           </div>
           
           {/* Mensaje de bienvenida */}
-          <p className="text-lg text-slate-600 font-medium mb-6">
-            ¡Bienvenido, <span className="text-blue-600 font-semibold">{session.user.name}</span>!
+          <p className="text-lg text-purple-200 font-medium mb-6">
+            ¡Bienvenido, <span className="text-gold-600 font-semibold">{session.user.name}</span>!
           </p>
           
           {/* Tarjeta de información con gradiente */}
-          <div className="relative bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-2xl p-6 mb-8 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div className="relative bg-white/10 bg-gradient-to-r from-red-50 to-pink-50 border border-white/10 rounded-2xl p-6 mb-8 overflow-hidden hover:shadow-lg hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-300">
             
             {/* Barra lateral izquierda */}
             <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-red-500 to-red-400"></div>
