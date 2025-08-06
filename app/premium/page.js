@@ -48,7 +48,7 @@ export default function PremiumPage() {
     <div className="min-h-screen bg-gradient-to-br from-purple-900/80 via-blue-900/80 to-indigo-900/80 p-4 sm:p-8 relative">
       <div className="max-w-4xl mx-auto mt-8">
         {/* Contenedor principal con efecto glassmorphism */}
-        <div className="relative bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8 overflow-hidden">
+        <div className="relative bg-white/5 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-8 overflow-hidden">
           
           {/* Línea superior decorativa */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-60"></div>
@@ -56,7 +56,7 @@ export default function PremiumPage() {
           {/* Título con corona */}
           <div className="flex items-center gap-3 mb-6">
             <span className="text-4xl opacity-80">⭐</span>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
               Página de Usuario Premium
             </h1>
           </div>
