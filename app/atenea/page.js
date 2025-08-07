@@ -369,8 +369,8 @@ Respuesta: [Tu respuesta aquí]`;
                 },
               ],
               merchantInfo: {
-                merchantId: '12345678901234567890',
-                merchantName: 'Demo Merchant',
+                merchantId: '5630822997',
+                merchantName: 'Epic Media Wave',
               },
               transactionInfo: {
                 totalPriceStatus: 'FINAL',

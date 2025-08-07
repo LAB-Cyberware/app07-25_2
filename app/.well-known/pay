@@ -1,0 +1,4 @@
+{
+  "default_applications": ["https://pay.google.com/gp/p/ui/pay"],
+  "supported_origins": ["https://app07-25-2.onrender.com"]
+}
