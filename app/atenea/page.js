@@ -381,13 +381,23 @@ Respuesta: [Tu respuesta aquí]`;
               },
             }}
             onLoadPaymentData={paymentRequest => {
-              console.log('load payment data', paymentRequest);
+              console.log('load payment data', paymentRequest, Payment);
             }}
           />
         </div>
       </div>
      )
     }
+
+    const Payment = (paymentRequest) => {
+      if (paymentRequest && session) {
+          if (!session?.user?.rol === 'premium') {
+              cambiarRol();
+          }
+      }
+    }
+    
+  
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
