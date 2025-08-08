@@ -35,7 +35,7 @@ const AteneaDigitalMVP = () => {
   const [showPayModal, setShowPayModal] = useState(false);
   const [showPayMethod, setShowPayMethod] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState('10000.00');
-  const [showSuccesfulPay, setShowSuccesfulPay] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
   const [updatingUser, setUpdatingUser] = useState(null);
@@ -380,9 +380,31 @@ Respuesta: [Tu respuesta aquí]`;
                 countryCode: 'CL',
               },
             }}
-            onLoadPaymentData={paymentRequest => {
+            onLoadPaymentData={async paymentRequest => {
               console.log('load payment data', paymentRequest, Payment);
-            }}
+
+             try {
+
+              if (session?.user?.rol !== 'premium') {
+                await cambiarRol('premium');
+              }
+              
+
+              setShowPayMethod(false);
+              setShowPayModal(false);
+              setShowPricingModal(false);
+              
+              setShowPayment(true);
+              
+            } catch (error) {
+              console.error('Error procesando el pago:', error);
+              alert('Error al procesar el pago. Intenta nuevamente.');
+            }
+          }}
+          onError={(error) => {
+            console.error('Error en Google Pay:', error);
+            alert('Error con Google Pay. Intenta nuevamente.');
+          }}
           />
           <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
               Cancelar
@@ -393,24 +415,19 @@ Respuesta: [Tu respuesta aquí]`;
     }
 
     const Payment = () => {
-      if (onLoadPaymentData && session) {
-          if (!session?.user?.rol === 'premium') {
-              cambiarRol();
-          }
-          return (
-            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100 p-4">
-              <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
-                <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
-                    <X />
-                </button>
-                <h2 className='space-y-5 mb-5'>¡FELICIDADES! Has obtenido la membresía Premium.</h2>
-                <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                    Salir
-                </button>
-              </div>
+        return (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100 p-4">
+            <div className="bg-gradient-to-br from-purple-900 to-blue-900 border border-purple-500 rounded-2xl max-w-md w-full p-8 text-white relative shadow-2xl shadow-purple-500/20">
+              <button onClick={() => setShowPayment(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
+                  <X />
+              </button>
+              <h2 className='space-y-5 mb-5'>¡FELICIDADES! Has obtenido la membresía Premium.</h2>
+              <button onClick={() => setShowPayment(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                  Salir
+              </button>
             </div>
-          )
-      }
+          </div>
+        )
     }
 
   return (
