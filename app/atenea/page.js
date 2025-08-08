@@ -348,7 +348,7 @@ Respuesta: [Tu respuesta aquí]`;
                 <X />
           </button>
           <GooglePayButton
-            environment="PRODUCTION"
+            environment="TEST"
             paymentRequest={{
               apiVersion: 2,
               apiVersionMinor: 0,
@@ -409,6 +409,7 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
               Cancelar
           </button>
+          {showPayment && <Payment />}
         </div>
       </div>
      )
