@@ -206,7 +206,7 @@ Respuesta: [Tu respuesta aquí]`;
     const [selectedPlan, setSelectedPlan] = useState('monthly');
 
     const plans = [
-      { id: 'weekly', name: 'Plan Semanal', price: '5000.00', period: '/ semana' },
+      { id: 'weekly', name: 'Plan Semanal', price: '1.00', period: '/ semana' },
       { id: 'monthly', name: 'Plan Mensual', price: '10000.00', period: '/ mes' },
       { id: 'yearly', name: 'Plan Anual', price: '80000.00', period: '/ año' }
     ];
@@ -348,7 +348,7 @@ Respuesta: [Tu respuesta aquí]`;
                 <X />
           </button>
           <GooglePayButton
-            environment="TEST"
+            environment="PRODUCTION"
             paymentRequest={{
               apiVersion: 2,
               apiVersionMinor: 0,
