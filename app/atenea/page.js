@@ -392,7 +392,7 @@ Respuesta: [Tu respuesta aquí]`;
      )
     }
 
-    const Payment = (onLoadPaymentData) => {
+    const Payment = () => {
       if (onLoadPaymentData && session) {
           if (!session?.user?.rol === 'premium') {
               cambiarRol();
