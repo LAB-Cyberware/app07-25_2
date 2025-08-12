@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Send, Copy, Shield, Brain, Lock, Star, CheckCircle, ArrowRight, X, LogOut } from 'lucide-react';
-import { isAssetError } from 'next/dist/client/route-loader';
-import GooglePayButton from '@google-pay/button-react';
 
 // --- Mock Data ---
 const MOCK_TESTIMONIALS = [
@@ -43,10 +41,7 @@ const AteneaDigitalMVP = () => {
   const { data: session, status } = useSession()
   const router = useRouter()
 
-  const crypto = require('node:crypto')
-  const axios = require('axios')
   const dotenv = require('dotenv')
-  const querystring = require('node:querystring')
   dotenv.config({
     path:'./.env.local'
   })
@@ -57,6 +52,17 @@ const AteneaDigitalMVP = () => {
       secretKey:process.env.SECRET_KEY
   }
 
+  const weekly = {
+    Url:"https://sandbox.flow.cl/btn.php?token=r84b3d15e0ce30452a135f815c4c65b6001caed6"
+  }
+
+  const monthly = {
+    Url:"https://sandbox.flow.cl/btn.php?token=vdc393787a980a264f866247e0e3a06a70574b14"
+  }
+
+  const yearly = {
+    Url:"https://sandbox.flow.cl/btn.php?token=s3d4c7eb83a3a060778ef0923b8ba55bfff3e64a"
+  }
 
   useEffect(() => {
     if (status === 'loading') return
@@ -221,7 +227,7 @@ Respuesta: [Tu respuesta aquí]`;
     const [selectedPlan, setSelectedPlan] = useState('monthly');
 
     const plans = [
-      { id: 'weekly', name: 'Plan Semanal', price: '1.00', period: '/ semana' },
+      { id: 'weekly', name: 'Plan Semanal', price: '5000.00', period: '/ semana' },
       { id: 'monthly', name: 'Plan Mensual', price: '10000.00', period: '/ mes' },
       { id: 'yearly', name: 'Plan Anual', price: '80000.00', period: '/ año' }
     ];
@@ -307,7 +313,7 @@ Respuesta: [Tu respuesta aquí]`;
               <button  
               onClick={() => setShowPayMethod(true)} 
               className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
-                  Actualizar y Pagar
+                Actualizar y Pagar
               </button>
             )}
             <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
@@ -362,10 +368,12 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>
-          <button className='w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 rounded-lg transition-all duration-300 transform hover:scale-105' href="https://sandbox.flow.cl/btn.php?token=r84b3d15e0ce30452a135f815c4c65b6001caed6">
-              Flow
-          </button>
-          <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+          <a href={selectedPlan.Url}>
+            <button className='w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 rounded-lg transition-all duration-300 transform hover:scale-105'>
+                Flow
+            </button>
+          </a>
+          <button onClick={() => setShowPayMethod(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
               Cancelar
           </button>
         </div>
