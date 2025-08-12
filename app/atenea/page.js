@@ -43,6 +43,21 @@ const AteneaDigitalMVP = () => {
   const { data: session, status } = useSession()
   const router = useRouter()
 
+  const crypto = require('node:crypto')
+  const axios = require('axios')
+  const dotenv = require('dotenv')
+  const querystring = require('node:querystring')
+  dotenv.config({
+    path:'./.env.local'
+  })
+
+  const config = {
+      apiUrl:"https://sandbox.flow.cl/api",
+      apiKey:process.env.API_KEY,
+      secretKey:process.env.SECRET_KEY
+  }
+
+
   useEffect(() => {
     if (status === 'loading') return
     if (!session) {
@@ -347,69 +362,12 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>
-          <GooglePayButton
-            environment="TEST"
-            paymentRequest={{
-              apiVersion: 2,
-              apiVersionMinor: 0,
-              allowedPaymentMethods: [
-                {
-                  type: 'CARD',
-                  parameters: {
-                    allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-                    allowedCardNetworks: ['MASTERCARD', 'VISA'],
-                  },
-                  tokenizationSpecification: {
-                    type: 'PAYMENT_GATEWAY',
-                    parameters: {
-                      gateway: 'example',
-                      gatewayMerchantId: 'exampleGatewayMerchantId',
-                    },
-                  },
-                },
-              ],
-              merchantInfo: {
-                merchantId: '5630822997',
-                merchantName: 'Epic Media Wave',
-              },
-              transactionInfo: {
-                totalPriceStatus: 'FINAL',
-                totalPriceLabel: 'Total',
-                totalPrice: ''+selectedPrice+'',
-                currencyCode: 'CLP',
-                countryCode: 'CL',
-              },
-            }}
-            onLoadPaymentData={async paymentRequest => {
-              console.log('load payment data', paymentRequest, Payment);
-
-             try {
-
-              if (session?.user?.rol !== 'premium') {
-                await cambiarRol('premium');
-              }
-              
-
-              setShowPayMethod(false);
-              setShowPayModal(false);
-              setShowPricingModal(false);
-              
-              setShowPayment(true);
-              
-            } catch (error) {
-              console.error('Error procesando el pago:', error);
-              alert('Error al procesar el pago. Intenta nuevamente.');
-            }
-          }}
-          onError={(error) => {
-            console.error('Error en Google Pay:', error);
-            alert('Error con Google Pay. Intenta nuevamente.');
-          }}
-          />
+          <button className='w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 rounded-lg transition-all duration-300 transform hover:scale-105' href="https://sandbox.flow.cl/btn.php?token=r84b3d15e0ce30452a135f815c4c65b6001caed6">
+              Flow
+          </button>
           <button onClick={() => setShowPayModal(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
               Cancelar
           </button>
-          {showPayment && <Payment />}
         </div>
       </div>
      )
