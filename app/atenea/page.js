@@ -41,27 +41,10 @@ const AteneaDigitalMVP = () => {
   const { data: session, status } = useSession()
   const router = useRouter()
 
-  const dotenv = require('dotenv')
-  dotenv.config({
-    path:'./.env.local'
-  })
-
   const config = {
       apiUrl:"https://sandbox.flow.cl/api",
       apiKey:process.env.API_KEY,
       secretKey:process.env.SECRET_KEY
-  }
-
-  const weekly = {
-    Url:"https://sandbox.flow.cl/btn.php?token=r84b3d15e0ce30452a135f815c4c65b6001caed6"
-  }
-
-  const monthly = {
-    Url:"https://sandbox.flow.cl/btn.php?token=vdc393787a980a264f866247e0e3a06a70574b14"
-  }
-
-  const yearly = {
-    Url:"https://sandbox.flow.cl/btn.php?token=s3d4c7eb83a3a060778ef0923b8ba55bfff3e64a"
   }
 
   useEffect(() => {
@@ -227,9 +210,9 @@ Respuesta: [Tu respuesta aquí]`;
     const [selectedPlan, setSelectedPlan] = useState('monthly');
 
     const plans = [
-      { id: 'weekly', name: 'Plan Semanal', price: '5000.00', period: '/ semana' },
-      { id: 'monthly', name: 'Plan Mensual', price: '10000.00', period: '/ mes' },
-      { id: 'yearly', name: 'Plan Anual', price: '80000.00', period: '/ año' }
+      { id: 'weekly', name: 'Plan Semanal', price: '5000.00', period: '/ semana'  },
+      { id: 'monthly', name: 'Plan Mensual', price: '10000.00', period: '/ mes'  },
+      { id: 'yearly', name: 'Plan Anual', price: '80000.00', period: '/ año'  }
     ];
 
     return (
@@ -361,6 +344,22 @@ Respuesta: [Tu respuesta aquí]`;
     }
   };
 
+  const PayPrices = () => {
+    if (selectedPrice === '5000.00') {
+      window.open('https://sandbox.flow.cl/btn.php?token=r84b3d15e0ce30452a135f815c4c65b6001caed6')
+      return;
+    }
+
+    if (selectedPrice === '10000.00') {
+      window.open('https://sandbox.flow.cl/btn.php?token=vdc393787a980a264f866247e0e3a06a70574b14')
+      return;
+    }
+    if (selectedPrice === '80000.00') {
+      window.open('https://sandbox.flow.cl/btn.php?token=s3d4c7eb83a3a060778ef0923b8ba55bfff3e64a')
+      return;
+    }
+  }
+
   const PayMethod = () => {
      return (
       <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-100 p-4">
@@ -368,11 +367,9 @@ Respuesta: [Tu respuesta aquí]`;
           <button onClick={() => setShowPayMethod(false)} className="absolute top-2 right-4 text-white/70 hover:text-white">
                 <X />
           </button>
-          <a href={selectedPlan.Url}>
-            <button className='w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 rounded-lg transition-all duration-300 transform hover:scale-105'>
+          <button onClick={PayPrices} className='w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-2 rounded-lg transition-all duration-300 transform hover:scale-105'>
                 Flow
-            </button>
-          </a>
+          </button>
           <button onClick={() => setShowPayMethod(false)} className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
               Cancelar
           </button>
