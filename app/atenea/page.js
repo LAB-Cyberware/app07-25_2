@@ -35,7 +35,6 @@ const AteneaDigitalMVP = () => {
   const [selectedPrice, setSelectedPrice] = useState('10000.00');
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [showWaitlistSuccess, setShowWaitlistSuccess] = useState(false);
-  const [error, setError] = useState(null);
   const { data: session, status } = useSession()
   const router = useRouter()
 
